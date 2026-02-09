@@ -1,16 +1,74 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
+import {
+  getRandomCharacter,
+  voteCharacter,
+} from "../services/character.service";
+import CharacterCardSkeleton from "../components/CharacterCardSkeleton";
 
 const Home = () => {
+  const [character, setCharacter] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const loadCharacter = async () => {
+    if (!category) return;
+
+    setLoading(true);
+    try {
+      const data = await getRandomCharacter(category);
+      setCharacter(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadCharacter();
+  }, [category]);
+
+  const handleVote = async (vote) => {
+    try {
+      await voteCharacter({
+        characterId: character._id,
+        vote,
+      });
+      loadCharacter();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <main className="home">
       <h1>Reto BX</h1>
 
-      <div>
-        <h2>Que te parece el personaje?</h2>
-      </div>
+      <select
+        value={category ?? ""}
+        onChange={(e) => setCategory(e.target.value)}
+        className="category-select"
+        disabled={loading}
+      >
+        <option value="" disabled>
+          Selecciona una categoría
+        </option>
+        <option value="pokemon">Pokémon</option>
+        <option value="rick_and_morty">Rick and Morty</option>
+        <option value="superhero">Superhéroes</option>
+      </select>
 
-      <CharacterCard />
+      {loading ? (
+        <CharacterCardSkeleton />
+      ) : !character ? null : (
+        <CharacterCard
+          name={character?.name}
+          image={character?.image}
+          onLike={() => handleVote("like")}
+          onDislike={() => handleVote("dislike")}
+        />
+      )}
     </main>
   );
 };
