@@ -1,0 +1,63 @@
+@use "../variables" as *;
+
+.vote-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+//   max-width: 150px;
+
+  padding: 12px 0;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  &__text {
+    font-size: 14px;
+  }
+}
+
+.vote-button--like {
+  background-color: $like-color;
+  color: #062e2a;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.35);
+  }
+}
+
+.vote-button--dislike {
+  background-color: $dislike-color;
+  color: #3f0a0a;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 8px 20px rgba(248, 113, 113, 0.35);
+  }
+}
