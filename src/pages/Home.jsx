@@ -21,6 +21,7 @@ const Home = () => {
       const data = await getRandomCharacter(category);
       setCharacter(data);
     } catch (error) {
+      toast.error("Ocurrió un error al cargar el personaje");
       console.error("Error loading character", error);
     } finally {
       setLoading(false);
@@ -44,6 +45,7 @@ const Home = () => {
 
       await loadCharacter();
     } catch (error) {
+      toast.error("Ocurrió un error al registrar el voto");
       console.error("Error voting", error);
     } finally {
       setVoting(false);
@@ -52,12 +54,16 @@ const Home = () => {
 
   return (
     <main className="home">
-      <h1>Reto BX</h1>
+      <h1 className="home__title">Reto BX</h1>
+
+      <p className="home__subtitle">
+        Vota por personajes de tus universos favoritos
+      </p>
 
       <select
         value={category ?? ""}
         onChange={(e) => setCategory(e.target.value)}
-        className="category-select"
+        className="home__category-select"
         disabled={loading}
       >
         <option value="" disabled>

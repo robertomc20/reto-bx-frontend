@@ -6,7 +6,7 @@ import "./styles/main.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Toaster position="bottom-center" />
+    <Toaster position="top-center" />
     <App />
   </StrictMode>,
 );

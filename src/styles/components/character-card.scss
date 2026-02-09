@@ -36,6 +36,8 @@
 
   .character-card__name {
     font-size: 20px;
+    font-weight: 600;
+    text-align: center;
   }
 
   .character-card__actions-container {
@@ -43,6 +45,11 @@
     flex-direction: row;
     gap: 12px;
     padding: 24px;
+
+    @media (max-width: 414px) {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 }
 

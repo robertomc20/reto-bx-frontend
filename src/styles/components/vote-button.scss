@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  max-width: 150px;
+//   max-width: 150px;
 
   padding: 12px 0;
   border-radius: 12px;
@@ -35,11 +35,12 @@
   }
 
   &__icon {
-    font-size: 1.2rem;
+    width: 18px;
+    height: 18px;
   }
 
   &__text {
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 }
 
