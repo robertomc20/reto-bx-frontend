@@ -1,16 +1,75 @@
-# React + Vite
+# reto-bx-frontend
+Frontend del desafío técnico **BX**, desarrollado con **React + Vite**.  
+La aplicación permite a los usuarios votar (like / dislike) por personajes de distintos universos de forma aleatoria.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🧩 Descripción
+La aplicación muestra un personaje aleatorio perteneciente a una de las siguientes categorías:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Pokémon
+- Rick and Morty
+- Superhéroes
 
-## React Compiler
+El usuario puede seleccionar la categoría, visualizar el personaje y emitir un voto positivo o negativo.  
+Luego de votar, se carga automáticamente un nuevo personaje.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El frontend consume una API propia desarrollada en Node.js (backend del reto).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Tecnologías utilizadas
+
+- **React**
+- **Vite**
+- **Sass (SCSS)**
+- **Axios**
+- **react-icons**
+- **react-hot-toast**
+
+---
+
+## 🎨 Características de la interfaz
+- Interfaz clara y minimalista
+- Card centrada con imagen y nombre del personaje
+- Selector de categoría
+- Botones de voto con microinteracciones
+- Skeleton loader para evitar saltos visuales
+- Notificaciones tipo *toast* para feedback al usuario
+- Diseño responsive (desktop y mobile)
+- Manejo de imágenes fallback (especialmente para superhéroes)
+
+---
+
+## 🔌 Conexión con el backend
+El frontend consume los siguientes endpoints principales:
+
+- Obtener personaje aleatorio por categoría
+- Registrar voto (like / dislike)
+
+La URL del backend se configura mediante variables de entorno.
+
+---
+## Configuración de Variables de Ambiente
+1.- Crear archivo `.env`  
+2.- Copiar el contenido de `.env.example` y pegarlo en el archivo `.env`
+
+## IMPORTANTE
+Asegúrate de que el backend esté corriendo antes de iniciar el frontend.
+
+▶️ Instalación y ejecución
+1.- Instalar dependencias:
+npm install
+
+2.- Ejecutar el proyecto en modo desarrollo:
+npm run dev
+
+3.- Abrir en el navegador:
+http://localhost:5173
+
+### Responsive
+La aplicación está optimizada para pantallas móviles, manteniendo una experiencia consistente y cómoda para el usuario.
+
+### Autor
+Desarrollado por Roberto Marihuán Crisóstomo
+Desafío técnico BX
