@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import CharacterCard from "../components/CharacterCard";
 import {
   getRandomCharacter,
@@ -10,6 +11,7 @@ const Home = () => {
   const [character, setCharacter] = useState(null);
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [voting, setVoting] = useState(false);
 
   const loadCharacter = async () => {
     if (!category) return;
@@ -19,7 +21,7 @@ const Home = () => {
       const data = await getRandomCharacter(category);
       setCharacter(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error loading character", error);
     } finally {
       setLoading(false);
     }
@@ -29,15 +31,22 @@ const Home = () => {
     loadCharacter();
   }, [category]);
 
-  const handleVote = async (vote) => {
+  const handleVote = async (voteType) => {
+    if (!character) return;
+
+    setVoting(true);
     try {
       await voteCharacter({
-        characterId: character._id,
-        vote,
+        character,
+        vote: voteType,
       });
-      loadCharacter();
+      toast.success("Voto registrado!");
+
+      await loadCharacter();
     } catch (error) {
-      console.error(error);
+      console.error("Error voting", error);
+    } finally {
+      setVoting(false);
     }
   };
 
@@ -65,6 +74,7 @@ const Home = () => {
         <CharacterCard
           name={character?.name}
           image={character?.image}
+          loadingVote={voting}
           onLike={() => handleVote("like")}
           onDislike={() => handleVote("dislike")}
         />

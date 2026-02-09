@@ -9,10 +9,14 @@ export const getRandomCharacter = async (category) => {
   return response.data;
 };
 
-export const voteCharacter = async ({ characterId, vote }) => {
+export const voteCharacter = async ({ character, vote }) => {
+  const body = {
+    ...character,
+    vote: vote,
+  };
+  console.log(body);
   const response = await axios.post(`${API_BASE_URL}/api/votes`, {
-    characterId,
-    vote, // 'like' | 'dislike'
+    ...body,
   });
   return response.data;
 };
